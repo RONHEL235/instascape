@@ -1,12 +1,19 @@
 import { Routes, Route } from 'react-router-dom';
 
 import './globals.css';
+import SigninForm from './_auth/forms/SigninForm';
+import { Home } from './_root/pages';
 
 const App = () => {
   return (
-    <h1 className='text-3x1 font-bold underline'>
-      InstaScape
-    </h1>
+    <main className='flex h-screen'>
+      <Routes>
+        //Public routes 
+        <Route path ="/sign-in" element={<SigninForm />} />
+        //Private Routes
+        <Route index element={<Home />} />
+      </Routes>
+    </main>
   )
 }
 
