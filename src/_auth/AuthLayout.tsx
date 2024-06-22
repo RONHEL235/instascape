@@ -1,9 +1,23 @@
-import React from 'react'
+import { Section } from "lucide-react";
+import { Outlet, Navigate } from "react-router-dom"
 
-function AuthLayout() {
+  const AuthLayout = () => {
+    const isAuthenticated = false;
+  
+
   return (
-    <div>AuthLayout</div>
-  )
+    <>
+      {isAuthenticated ? (
+        <Navigate to="/" /> 
+      ): (
+        <>
+          <Section>
+            <Outlet />
+          </Section>
+        </>
+      )}
+    </>
+   )
 }
 
 export default AuthLayout
