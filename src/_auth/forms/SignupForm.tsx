@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 
-function SignupForm() {
+const SignupForm = () => {
   return (
     <div>
       <Button>Click me</Button>

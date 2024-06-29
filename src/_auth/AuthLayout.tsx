@@ -1,4 +1,3 @@
-import { Section } from "lucide-react";
 import { Outlet, Navigate } from "react-router-dom"
 
   const AuthLayout = () => {
@@ -11,9 +10,9 @@ import { Outlet, Navigate } from "react-router-dom"
         <Navigate to="/" /> 
       ): (
         <>
-          <Section>
+          <section>
             <Outlet />
-          </Section>
+          </section>
         </>
       )}
     </>
