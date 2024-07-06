@@ -1,6 +1,6 @@
 import Loader from "@/components/shared/Loader"
 import { Button } from "@/components/ui/button"
-
+import { Link } from "react-router-dom"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { SignupValidation } from "@/lib/validation"
@@ -9,7 +9,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 const SignupForm = () => {
-  const isLoading = true
+  const isLoading = false
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -32,7 +33,7 @@ const SignupForm = () => {
       <div className="sm:w-420 flex-center flex-col">
         <img src="/assets/images/InstascapeLogo.svg" alt="logo"/>
         <h2 className="h3-hold md:h2-bold pt-5 sm:pt-12">Create New Account</h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">To use InstaScape, enter your details</p>        
+        <p className="text-light-2 small-medium md:base-regular mt-2">To use InstaScape, please enter your details</p>        
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">
           <FormField
             control={form.control}
@@ -86,13 +87,18 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button-primary">
+          <Button type="submit" className="shad-button_primary">
             {isLoading ? (
               <div className="flex-center gap-2">
                 <Loader />Loading...
               </div>
             ):"Sign-up"}
           </Button>
+
+          <p className="text-small-regular text-light-2 text-center mt-2">
+            Already have an account?
+            <Link to="/sign-in" className=""></Link>
+          </p>
         </form>
       </div>
     </Form>
