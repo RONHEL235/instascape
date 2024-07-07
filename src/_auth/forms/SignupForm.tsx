@@ -23,9 +23,9 @@ const SignupForm = () => {
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof SignupValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof SignupValidation>) {
+    //create a user
+    // const newUser = await createUserAccount(values)
     console.log(values)
   }
   return (
@@ -87,7 +87,7 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
+          <Button type="submit" className="bg-rose-dark">
             {isLoading ? (
               <div className="flex-center gap-2">
                 <Loader />Loading...
@@ -97,7 +97,7 @@ const SignupForm = () => {
 
           <p className="text-small-regular text-light-2 text-center mt-2">
             Already have an account?
-            <Link to="/sign-in" className=""></Link>
+            <Link to="/sign-in" className="text-rose text-small-semibold ml-1">Log in</Link>
           </p>
         </form>
       </div>
