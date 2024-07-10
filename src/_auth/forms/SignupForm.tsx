@@ -6,13 +6,14 @@ import { SignupValidation } from "@/lib/validation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { createUserAccount } from "@/lib/appwrite/api"
 import { useToast } from "@/components/ui/use-toast"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
-
+import { userCreateUserAccountMutation } from "@/lib/react-query/queriesAndMutations"
+    
 const SignupForm = () => {
   const { toast } = useToast()
-  const isLoading = false
+
+  const { mutateAsync: createUserAccount, isLoading: isCreatingUser } = userCreateUserAccountMutation()
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
@@ -24,7 +25,7 @@ const SignupForm = () => {
       password: "",   
     },
   })
- 
+  
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newUser = await createUserAccount(values) 
@@ -95,7 +96,7 @@ const SignupForm = () => {
             )}
           />
           <Button type="submit" className="bg-rose-dark">
-            {isLoading ? (
+            {isCreatingUser ? (
               <div className="flex-center gap-2">
                 <Loader />Loading...
               </div>
