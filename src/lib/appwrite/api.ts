@@ -1,6 +1,6 @@
 import { ID } from "appwrite"
 import { INewUser } from "@/types"
-import { account, avatars } from "./config"
+import { account, appwriteConfig, avatars, databases } from "./config"
 //Gets the user as a parameter and do something with the user.
 //Calling the function within our form. 
 export async function createUserAccount(user: INewUser) {
@@ -38,5 +38,16 @@ export async function saveUserToDB(user: {
     imageUrl: URL
     username?: string  
 }) {
+    try {
+        const newUser = await databases.createDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.userCollectionId,
+            ID.unique(),
+            user,
+        )
 
+        return newUser
+    } catch (error ) {
+        console.log(error)
+    }
 }
