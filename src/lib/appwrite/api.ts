@@ -54,6 +54,8 @@ export async function saveUserToDB(user: {
     }
 }
 
+
+//Function for when a user signs in, this creates a session for the logged in user.
 export async function signInAccount(user: { email: string; password: string;}) {
     try {  
         const session = await account.createEmailPasswordSession(user.email, user.password)
