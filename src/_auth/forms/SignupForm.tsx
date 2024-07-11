@@ -14,7 +14,7 @@ const SignupForm = () => {
   const { toast } = useToast()
 
   const { mutateAsync: createUserAccount, isLoading: isCreatingUser } = useCreateUserAccount()
-
+ 
   const { mutateAsync: signInAccount, isLoading: isSigningIn } = useSignInAccount()
 
   // 1. Define your form.
@@ -47,7 +47,7 @@ const SignupForm = () => {
   }
 
 
-  
+
   return (
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
