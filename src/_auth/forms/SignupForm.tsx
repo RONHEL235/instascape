@@ -8,17 +8,17 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useToast } from "@/components/ui/use-toast"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
-import { useCreateUserAccount } from "@/lib/react-query/queriesAndMutations"
+import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queriesAndMutations"
 import { useUserContext } from "@/context/AuthContext"
     
 const SignupForm = () => {
   const { toast } = useToast()
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext()
   const navigate = useNavigate() 
-
-  const { mutateAsync: createUserAccount, isLoading: isCreatingUser } = useCreateUserAccount()
  
-  const { mutateAsync: signInAccount, isLoading: isSigningIn } = useSignInAccount()
+  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount()
+ 
+  const { mutateAsync: signInAccount, isPending: isSigningIn } = useSignInAccount()
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
@@ -119,7 +119,7 @@ const SignupForm = () => {
             )}
           />
           <Button type="submit" className="bg-rose-dark">
-            {isCreatingUser ? (
+            {isCreatingAccount ? (
               <div className="flex-center gap-2">
                 <Loader />Loading...
               </div>
