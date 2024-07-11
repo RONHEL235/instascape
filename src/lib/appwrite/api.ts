@@ -1,6 +1,7 @@
 import { ID } from "appwrite"
 import { INewUser } from "@/types"
-import { account, appwriteConfig, avatars, databases } from "./config"
+import { account, appwriteConfig, avatars, databases } from "./config" 
+
 //Gets the user as a parameter and do something with the user.
 //Calling the function within our form. 
 export async function createUserAccount(user: INewUser) {
@@ -11,7 +12,7 @@ export async function createUserAccount(user: INewUser) {
             user.password,
             user.name
         )
-
+ 
         if(!newAccount) throw Error
 
         const avatarUrl = avatars.getInitials(user.name)
@@ -50,4 +51,14 @@ export async function saveUserToDB(user: {
     } catch (error ) {
         console.log(error)
     }
+}
+
+export async function signInAccount(user: { email: string; password: string;}) {
+    try {  
+        const session = await account.createEmailPasswordSession(user.email, user.password)
+
+        return session
+    } catch (error) {
+      console.log(error) 
+    }  
 }
