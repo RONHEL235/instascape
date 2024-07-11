@@ -1,6 +1,6 @@
 import Loader from "@/components/shared/Loader"
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Input } from "@/components/ui/input"
 import { SignupValidation } from "@/lib/validation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -9,9 +9,12 @@ import { z } from "zod"
 import { useToast } from "@/components/ui/use-toast"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
 import { useCreateUserAccount } from "@/lib/react-query/queriesAndMutations"
+import { useUserContext } from "@/context/AuthContext"
     
 const SignupForm = () => {
   const { toast } = useToast()
+  const { checkAuthUser, isLoading: isUserLoading } = useUserContext()
+  const navigate = useNavigate() 
 
   const { mutateAsync: createUserAccount, isLoading: isCreatingUser } = useCreateUserAccount()
  
@@ -44,9 +47,17 @@ const SignupForm = () => {
      if(!session) {
       return toast({title: "Sign up failed. Please try again."})
      }
+
+     const isLoggedIn = await checkAuthUser()
+
+     if(isLoggedIn) {
+      form.reset()
+
+      navigate("/")
+     } else {
+      return toast({title: "Sign up failed. Please try again."})
+     }
   }
-
-
 
   return (
     <Form {...form}>
