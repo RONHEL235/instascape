@@ -21,7 +21,7 @@ const formSchema = z.object({
   }),
 })
 
-const PostForm = () => {
+const PostForm = ({ post }) => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,7 +61,10 @@ const PostForm = () => {
             <FormItem className="py-4">
               <FormLabel className="shad-form_label">Add photos</FormLabel>
               <FormControl>
-                <FileUploader />
+                <FileUploader
+                    fieldChange={field.onChange}
+                    mediaUrl={post?.imageUrl}
+                />
               </FormControl>
               <FormMessage className="shad-form_message"/>
             </FormItem>
@@ -85,12 +88,12 @@ const PostForm = () => {
           name="tags" 
           render={({ field }) => (
             <FormItem className="py-4">
-              <FormLabel className="shad-form_label py-8" >Add Tags(separated by comma " , ")</FormLabel>
+              <FormLabel className="shad-form_label py-8" >Add Tags (separated by comma " , ")</FormLabel>
               <FormControl>
                 <Input 
                 type="text" 
                 className="shad-input"
-                placeholder="Love, Learning, Consistency, Discipline" />
+                placeholder="Love, Learning, Consistency, Discipline (modus)" />
               </FormControl>
               <FormMessage className="shad-form_message"/>
             </FormItem>
