@@ -20,8 +20,8 @@ const Topbar = () => {
                 <img 
                     src="/assets/images/InstascapeLogo.svg"
                     alt="logo"
-                    width={130}
-                    height={325}
+                    width={80}
+                    height={270}
                 />
             </Link>
 
