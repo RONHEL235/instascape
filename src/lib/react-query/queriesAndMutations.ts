@@ -8,6 +8,11 @@ import {
 import { createUserAccount, signInAccount, signOutAccount } from "../appwrite/api"
 import { INewUser } from "@/types"
 
+
+//==============================
+//AUTH QUERIES
+//==============================
+
 /*Initialised a new mutation fuction so that now react query know what is we are doing*/
 export const useCreateUserAccount = () => {
     return useMutation({
@@ -29,3 +34,19 @@ export const useSignOutAccount = () => {
         mutationFn: signOutAccount 
     })
 }
+
+//========================
+//POST QUERIES
+//========================
+
+export const useCreatePost = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (post: INewPost) => createPost(post),
+        onSuccess: () => {
+        queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+        });
+       },
+    });
+};

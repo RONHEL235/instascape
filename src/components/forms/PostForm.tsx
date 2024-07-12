@@ -16,13 +16,18 @@ import { Textarea } from "../ui/textarea"
 import FileUploader from "../shared/FileUploader"
 import { PostValidation } from "@/lib/validation"
 import { Models } from "appwrite"
+import { useCreatePost } from "@/lib/react-query/queriesAndMutations"
+import { useUserContext } from "@/context/AuthContext"
+import { toast } from "../ui/use-toast"
 
 type PostFormProps = {
     post?: Models.Document
 }
 
 const PostForm = ({ post }: PostFormProps) => {
-  // 1. Define your form.
+  const { mutateAsync: createPost, isPending: isLoadingCreate } = useCreatePost()
+  const { user } = useUserContext()
+
   const form = useForm<z.infer<typeof PostValidation>>({
     resolver: zodResolver(PostValidation),
     defaultValues: {
@@ -35,9 +40,16 @@ const PostForm = ({ post }: PostFormProps) => {
  
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof PostValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+    const newPost = await createPost({
+        ...values,
+        userId: user.id,
+    })
+    
+    if(!newPost) {
+        toast({
+            title: "Please try again"
+        })
+    }
   }
 
   return (
