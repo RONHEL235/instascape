@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -40,7 +39,8 @@ const PostForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex-col gap-9 w-full max-w-5xl">
+      <form onSubmit={form.handleSubmit(onSubmit)} 
+      className="flex-col gap-8 w-full max-w-5xl">
         <FormField
           control={form.control}
           name="caption"
@@ -58,7 +58,7 @@ const PostForm = () => {
           control={form.control}
           name="file" 
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="py-4">
               <FormLabel className="shad-form_label">Add photos</FormLabel>
               <FormControl>
                 <FileUploader />
@@ -71,7 +71,7 @@ const PostForm = () => {
           control={form.control}
           name="location" 
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="py-4">
               <FormLabel className="shad-form_label">Add location</FormLabel>
               <FormControl>
                 <Input type="text" className="shad-input"/>
@@ -84,7 +84,7 @@ const PostForm = () => {
           control={form.control}
           name="tags" 
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="py-4">
               <FormLabel className="shad-form_label py-8" >Add Tags(separated by comma " , ")</FormLabel>
               <FormControl>
                 <Input 
