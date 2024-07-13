@@ -99,14 +99,14 @@ export async function createPost(post: INewPost) {
     try {
         const uploadedFile = await uploadFile(post.file[0])
 
-        if(!uploadedFile) throw Error
+        if(!uploadedFile) throw Error("Failed to upload file")
 
         //Get file url
-        const fileUrl = getFilePreview(uploadedFile.$id)
+        const fileUrl = await getFilePreview(uploadedFile.$id)
 
         if(!fileUrl) {
             deleteFile(uploadedFile.$id)
-            throw Error
+            throw Error("Failed to get file URL")
         }
         
         //Convert tags into an array
@@ -135,6 +135,7 @@ export async function createPost(post: INewPost) {
         return newPost
     } catch (error) {
         console.log(error)
+        throw error
     }
 }
 
