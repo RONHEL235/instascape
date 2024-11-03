@@ -21,6 +21,8 @@ const Explore = () => {
     if(inView && !searchValue) fetchNextPage()
   }, [inView, searchValue])
 
+
+  // If posts data is still loading, show Loader component
   if(!posts) {
     return (
       <div className="flex-center w-full h-full">
