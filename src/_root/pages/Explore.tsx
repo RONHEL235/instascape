@@ -31,6 +31,8 @@ const Explore = () => {
     )
   }
 
+
+  // Conditional flags for rendering search results or paginated posts
   const shouldShowSearchResults = searchValue !== ""
   const shouldShowPosts = !shouldShowSearchResults && posts.pages.every((item) => item.documents.length === 0)
 
