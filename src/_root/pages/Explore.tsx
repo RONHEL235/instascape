@@ -15,6 +15,8 @@ const Explore = () => {
   const debouncedValue = useDebounce(searchValue, 500)
   const { data: searchedPosts, isFetching: isSearchFetching } = useSearchPosts(debouncedValue)
 
+
+  // Infinite scrolling: fetch next page of posts when inView and search is not active
   useEffect(() => {
     if(inView && !searchValue) fetchNextPage()
   }, [inView, searchValue])
