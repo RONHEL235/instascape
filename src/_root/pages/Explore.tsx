@@ -10,6 +10,7 @@ import { useInView } from "react-intersection-observer"
 const Explore = () => {
   // Initialize intersection observer to track when the user scrolls to the bottom of the page
   const { ref, inView } = useInView()
+  // Fetch posts data and pagination control using a custom hook
   const { data: posts, fetchNextPage, hasNextPage } = useGetPosts()
 
   const [searchValue, setSearchValue] = useState("")
