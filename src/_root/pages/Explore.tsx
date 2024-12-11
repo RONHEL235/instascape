@@ -14,6 +14,7 @@ const Explore = () => {
   const { data: posts, fetchNextPage, hasNextPage } = useGetPosts()
   // Manage state for search input value
   const [searchValue, setSearchValue] = useState("")
+  // Debounce search input to avoid excessive API calls while typing
   const debouncedValue = useDebounce(searchValue, 500)
   const { data: searchedPosts, isFetching: isSearchFetching } = useSearchPosts(debouncedValue)
 
