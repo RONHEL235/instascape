@@ -12,7 +12,7 @@ const Explore = () => {
   const { ref, inView } = useInView()
   // Fetch posts data and pagination control using a custom hook
   const { data: posts, fetchNextPage, hasNextPage } = useGetPosts()
-
+  // Manage state for search input value
   const [searchValue, setSearchValue] = useState("")
   const debouncedValue = useDebounce(searchValue, 500)
   const { data: searchedPosts, isFetching: isSearchFetching } = useSearchPosts(debouncedValue)
