@@ -4,6 +4,7 @@ import { useGetPostById } from "@/lib/react-query/queriesAndMutations"
 import { useParams } from "react-router-dom"
 
 const EditPost = () => {
+  // Extract post ID from URL parameters using useParams hook
   const { id } = useParams()
   const { data: post, isPending } = useGetPostById(id || "")
 
