@@ -14,6 +14,7 @@ import { useCreatePost, useUpdatePost } from "@/lib/react-query/queriesAndMutati
 import { useUserContext } from "@/context/AuthContext"
 import { useToast } from "../ui/use-toast"
 
+// Define props for PostForm, including an optional post and an action ("Create" or "Update")
 type PostFormProps = {
     post?: Models.Document
     action: "Create" |"Update" 
