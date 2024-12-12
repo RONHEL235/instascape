@@ -21,6 +21,7 @@ type PostFormProps = {
 }
 
 const PostForm = ({ post, action }: PostFormProps) => {
+  // Mutation hooks for creating and updating posts
   const { mutateAsync: createPost, isPending: isLoadingCreate } = useCreatePost()
   const { mutateAsync: updatePost, isPending: isLoadingUpdate } = useUpdatePost()
 
