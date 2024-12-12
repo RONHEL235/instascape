@@ -17,7 +17,7 @@ import { useToast } from "../ui/use-toast"
 // Define props for PostForm, including an optional post and an action ("Create" or "Update")
 type PostFormProps = {
     post?: Models.Document // Optional post object for editing
-    action: "Create" |"Update" 
+    action: "Create" |"Update" // Action type for form submission
 }
 
 const PostForm = ({ post, action }: PostFormProps) => {
