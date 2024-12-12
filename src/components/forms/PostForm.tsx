@@ -55,7 +55,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
       if(!updatedPost) {
         toast({title: "Please try again"})
       }
-
+      // Navigate to the updated post's page
       return navigate(`/post/${post.$id}`)
     }
     
