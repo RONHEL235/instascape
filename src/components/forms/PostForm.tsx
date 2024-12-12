@@ -51,7 +51,8 @@ const PostForm = ({ post, action }: PostFormProps) => {
         imageId: post?.imageId,
         imageUrl: post?.imageUrl,
       })
-
+      
+      // If update fails, show an error toast
       if(!updatedPost) {
         toast({title: "Please try again"})
       }
