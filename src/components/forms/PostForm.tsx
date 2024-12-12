@@ -63,7 +63,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
     // Handle post creation
     const newPost = await createPost({
         ...values,
-        userId: user.id,
+        userId: user.id,// Associate the new post with the current user
     })
     
     if(!newPost) {
