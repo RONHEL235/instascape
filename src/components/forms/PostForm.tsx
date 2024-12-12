@@ -29,7 +29,8 @@ const PostForm = ({ post, action }: PostFormProps) => {
   const { user } = useUserContext()
   const { toast } = useToast()
   const navigate = useNavigate() 
-
+  
+  // Initialize the form with default values and validation schema
   const form = useForm<z.infer<typeof PostValidation>>({
     resolver: zodResolver(PostValidation),
     defaultValues: {
